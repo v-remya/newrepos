@@ -33,7 +33,6 @@ rm -f $HOME/script.lock
 exit 1
 }
 
-
 ##      Our Main Menu
 press_enter () {
 echo ""
@@ -50,6 +49,8 @@ set x `ls -l $HOME/script.lock`
 echo "The test script is in use...!!"
 echo "Waiting for user $4 to exit..(working since $7 $8 $9)...!!"
 echo "Try after some time..!!"
+exit 0
+fi
 exit 0
 touch $HOME/script.lock
 trap remove_lock 1 2 15
@@ -76,7 +77,7 @@ case $selection in
 3 ) get_osver ; rm -f $HOME/script.lock ; press_enter ;;
 4 ) print_hello ; rm -f $HOME/script.lock ; press_enter ;;
 0 ) rm -f $HOME/script.lock ; exit ;;
-* ) echo "Please enter 1 or 2 or 3 or 4 or 0"; rm -f $HOME/script.lock ; press_enter
-done
-
+* ) echo "Please enter 1 or 2 or 3 or 4 or 0"; rm -f $HOME/script.lock ; press_enter; 
+esac
+done 
 exit 0
